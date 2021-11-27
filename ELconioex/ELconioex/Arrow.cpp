@@ -19,8 +19,9 @@ void SetArrowAngle(int id, float start, float end, float time)
 void SetArrowUse(int id, bool use)
 { 
 	g_Arrow[id].isUse; 
-	if(g_Arrow[id].isUse) 
 }
+
+
 
 
 // –îˆó‚ÌXV
