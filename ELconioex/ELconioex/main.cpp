@@ -375,9 +375,52 @@ void UpdateLogic()
 	pm.FindCollision();
 	pm.ResolveCollision();
 
-	for (int i = 0; i < 4; i++)
+	int newnum;
+	int oldnum = -1;
+	for (int k = 0; k < 4; k++)
 	{
-		player[i].score = 0;
+		player[k].score = 0;
+		stone_cover[k][0] = '\0';
+		for (int i = 0; i < STONE_HEIGHT; i++)
+		{
+			strcat(stone_cover[k], "\033[s");
+			for (int j = 0; j < STONE_WIDTH; j++)
+			{
+				newnum = backgroundImg[stones[k].y + i][stones[k].x + j];
+				if (oldnum == newnum)
+				{
+					strcat(stone_cover[k], " ");
+				}
+				else
+				{
+					int rgb[9];
+					strcat(stone_cover[k], "\033[48;2;");
+					for (int count = 0; count < 9; count++)
+					{
+						int ten = 1;
+						for (int kk = 0; kk < count; kk++)
+						{
+							ten *= 10;
+						}
+						rgb[count] = (newnum / (100000000 / ten)) % 10;
+						itoa(rgb[count], c, 10);
+						strcat(stone_cover[k], c);
+						if (count == 2 || count == 5)
+						{
+							strcat(stone_cover[k], ";");
+						}
+						else if (count == 8)
+						{
+							strcat(stone_cover[k], "m");
+						}
+					}
+					strcat(stone_cover[k], " ");
+				}
+				oldnum = newnum;
+			}
+			strcat(stone_cover[k], "\033[u");
+			strcat(stone_cover[k], "\033[1B");
+		}
 	}
 	for (int i = 0; i < 20; i++)
 	{
@@ -423,6 +466,8 @@ void UpdateLogic()
 		stones[3].trans.AddForce(135, 1);
 		reinport();
 	}
+
+
 }
 /*‰æ–ÊXV*/
 void UpdateScreen()
@@ -894,7 +939,7 @@ void LoadGame()
 			{
 				new_num = stone_data[k][i][j];
 
-				if (new_num != 242242242)
+				if (new_num != 252252252)
 				{
 					if (old_num == new_num)
 					{
