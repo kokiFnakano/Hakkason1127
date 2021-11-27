@@ -1,24 +1,22 @@
 ﻿  main.cpp
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(310,17): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(315,18): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(348,6): warning C4101: 'kx': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(346,6): warning C4101: 'newnum': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(349,6): warning C4101: 'count': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(347,6): warning C4101: 'ky': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(345,6): warning C4101: 'oldnum': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(361,8): warning C4101: 'p1_cover': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(363,10): warning C4101: 'y1': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(358,8): warning C4101: 'p0': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(363,6): warning C4101: 'x1': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(362,10): warning C4101: 'y0': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(364,6): warning C4101: 'x0_old': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(364,14): warning C4101: 'y0_old': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(356,6): warning C4101: 'pos0': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(359,8): warning C4101: 'p1': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(362,6): warning C4101: 'x0': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(360,8): warning C4101: 'p0_cover': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(365,14): warning C4101: 'y1_old': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(357,6): warning C4101: 'pos1': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(365,6): warning C4101: 'x1_old': unreferenced local variable
-D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(419,4): warning C4809: switch statement has redundant 'default' label; all possible 'case' labels are given
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(339,17): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(344,18): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(386,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(387,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(389,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(435,8): warning C4101: 'p1_cover': unreferenced local variable
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(437,10): warning C4101: 'y1': unreferenced local variable
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(432,8): warning C4101: 'p0': unreferenced local variable
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(437,6): warning C4101: 'x1': unreferenced local variable
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(436,10): warning C4101: 'y0': unreferenced local variable
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(438,6): warning C4101: 'x0_old': unreferenced local variable
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(438,14): warning C4101: 'y0_old': unreferenced local variable
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(430,6): warning C4101: 'pos0': unreferenced local variable
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(433,8): warning C4101: 'p1': unreferenced local variable
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(436,6): warning C4101: 'x0': unreferenced local variable
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(434,8): warning C4101: 'p0_cover': unreferenced local variable
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(439,14): warning C4101: 'y1_old': unreferenced local variable
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(431,6): warning C4101: 'pos1': unreferenced local variable
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(439,6): warning C4101: 'x1_old': unreferenced local variable
+D:\GithubRepositories\Hakkason1127\ELconioex\ELconioex\main.cpp(512,4): warning C4809: switch statement has redundant 'default' label; all possible 'case' labels are given
   ELconioex.vcxproj -> D:\GithubRepositories\Hakkason1127\ELconioex\Debug\ELconioex.exe

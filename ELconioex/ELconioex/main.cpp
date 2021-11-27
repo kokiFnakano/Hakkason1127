@@ -9,6 +9,7 @@
 #define PRESS_LINE 7
 #define STONE_WIDTH 26
 #define STONE_HEIGHT 13
+#define MAX_STONES 20
 
 /*コントロールのタイプ*/
 enum ControlType
@@ -32,6 +33,7 @@ enum CharacterAction
 };
 #include"conioex.h"
 #include<time.h>
+#include "Physics.h"
 
 typedef struct
 {
@@ -42,6 +44,7 @@ typedef struct
 	int anim;
 	float force;
 	int type;
+	Transform trans;
 }Stone_Data;
 
 typedef struct
@@ -60,6 +63,9 @@ typedef struct
 	Stone_Data stone;
 }Character_Data;
 Character_Data player[4] = { 0 };
+
+Stone_Data stones[MAX_STONES];
+PhysicsManager pm;
 
 int backgroundImg[WINDOW_LINE][WINDOW_LEN] = { 0 };
 int letter_data[10][LETTER_LINE][LETTER_LEN] = { 0 };
@@ -252,6 +258,29 @@ void SetDefaultData()
 		player[i].score = 0;
 		player[i].old_score = -1;
 		player[i].stone.type = i;
+		player[i].stone.x = player[i].stone_start_pos_x;
+		player[i].stone.y = player[i].stone_start_pos_y;
+		player[i].stone.old_x = player[i].stone.x;
+		player[i].stone.old_y = player[i].stone.y;
+		player[i].readyToFire = true;
+	}
+
+	for (int i = 0; i < MAX_STONES; i++)
+	{
+		stones[i].type = -1;
+		stones[i].trans.Size = 8;
+		pm.ObjectList.push_back(&stones[i].trans);
+	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		stones[i].type = i;
+		stones[i].trans.Pos.x = player[i].stone.x;
+		stones[i].trans.Pos.y = player[i].stone.y;
+		stones[i].x = player[i].stone.x;
+		stones[i].y = player[i].stone.y;
+		stones[i].old_x = stones[i].x;
+		stones[i].old_y = stones[i].y;
 	}
 
 }
@@ -290,8 +319,8 @@ void SetDefaultScene()
 			player[i].old_score = player[i].score;
 		}
 
-		gotoxy(player[i].stone_start_pos_x, player[i].stone_start_pos_y);
-		printf("%s", stone_pic[player[i].stone.type]);
+		//gotoxy(player[i].stone_start_pos_x, player[i].stone_start_pos_y);
+		//printf("%s", stone_pic[player[i].stone.type]);
 
 	}
 }
@@ -342,13 +371,58 @@ int Game()
 /*データ更新*/
 void UpdateLogic()
 {
-	int oldnum;
-	int newnum;
-	int ky;
-	int kx;
-	int count;
+	pm.ApplyForce();
+	pm.FindCollision();
+	pm.ResolveCollision();
 
+	for (int i = 0; i < 4; i++)
+	{
+		player[i].score = 0;
+	}
+	for (int i = 0; i < 20; i++)
+	{
+		if (stones[i].type != -1)
+		{
+			stones[i].x = stones[i].trans.Pos.x;
+			stones[i].y = stones[i].trans.Pos.y;
+			
+			float dis=vec4::dist(stones[i].trans.Pos, vec4(WINDOW_LEN / 2-4, WINDOW_LINE / 2,0,0));
+			if (dis<130)
+			{
+				player[stones[i].type].score += 1;
+				if (dis<80)
+				{
+					player[stones[i].type].score += 2;
 
+					if (dis<60)
+					{
+						player[stones[i].type].score += 7;
+					}
+				}
+			}
+		}
+	}
+
+	if (inport(PK_A))
+	{
+		stones[0].trans.AddForce(315, 1);
+		reinport();
+	}
+	if (inport(PK_D))
+	{
+		stones[1].trans.AddForce(45, 1);
+		reinport();
+	}
+	if (inport(PK_H))
+	{
+		stones[2].trans.AddForce(225, 1);
+		reinport();
+	}
+	if (inport(PK_K))
+	{
+		stones[3].trans.AddForce(135, 1);
+		reinport();
+	}
 }
 /*画面更新*/
 void UpdateScreen()
@@ -380,6 +454,25 @@ void UpdateScreen()
 			printf("%s", letter_pic[one]);
 
 			player[i].old_score = player[i].score;
+		}
+	}
+
+	for (int i = 0; i < MAX_STONES; i++)
+	{
+		if (stones[i].type != -1)
+		{
+
+			if (stones[i].old_x != stones[i].x || stones[i].old_y != stones[i].old_y)
+			{
+				gotoxy(stones[i].old_x, stones[i].old_y);
+				printf("%s", stone_cover[player[i].stone.type]);
+			}
+			gotoxy(stones[i].x, stones[i].y);
+			printf("%s", stone_pic[player[i].stone.type]);
+
+			stones[i].old_x = stones[i].x;
+			stones[i].old_y = stones[i].y;
+
 		}
 	}
 }
@@ -801,7 +894,7 @@ void LoadGame()
 			{
 				new_num = stone_data[k][i][j];
 
-				if (new_num != 255255255)
+				if (new_num != 242242242)
 				{
 					if (old_num == new_num)
 					{
@@ -891,7 +984,7 @@ void LoadGame()
 			strcat(stone_cover[k], "\033[1B");
 		}
 	}
-	
+
 
 
 	/*selectを画像データに変換*/
