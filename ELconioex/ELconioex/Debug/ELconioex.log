@@ -1,0 +1,10 @@
+﻿  main.cpp
+D:\VSProjects\ELconioex\ELconioex\main.cpp(455,17): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
+D:\VSProjects\ELconioex\ELconioex\main.cpp(460,18): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
+D:\VSProjects\ELconioex\ELconioex\main.cpp(1002,37): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+D:\VSProjects\ELconioex\ELconioex\main.cpp(1052,37): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+D:\VSProjects\ELconioex\ELconioex\main.cpp(1235,35): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+D:\VSProjects\ELconioex\ELconioex\main.cpp(1284,35): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+D:\VSProjects\ELconioex\ELconioex\main.cpp(1494,31): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+D:\VSProjects\ELconioex\ELconioex\main.cpp(2197,4): warning C4809: switch statement has redundant 'default' label; all possible 'case' labels are given
+  ELconioex.vcxproj -> D:\VSProjects\ELconioex\Debug\ELconioex.exe
