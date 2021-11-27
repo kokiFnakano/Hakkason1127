@@ -16,10 +16,11 @@ Transform::Transform()
 }
   vec4 Transform::rotate(vec4 pos,float rot)
   {
+      float val =rot / (180.00 / 3.1415926f);
     return vec4
     (
-      cos(rot)*pos.x-sin(rot)*pos.y,
-      sin(rot)*pos.x+cos(rot)*pos.y,
+      cos(val)*pos.x-sin(val)*pos.y,
+      sin(val)*pos.x+cos(val)*pos.y,
       0,0
     );
   }
@@ -57,7 +58,7 @@ void PhysicsManager::ApplyForce()
         ObjectList[i]->Pos += Dir *ObjectList[i]->Phys.Force;
         //printf("FORCE:%f\n",ObjectList[i]->Phys.Force);
         //摩擦適用
-        ObjectList[i]->Phys.Force *=0.8;// ObjectList[i]->Phys.Weight;
+        ObjectList[i]->Phys.Force *=0.98;// ObjectList[i]->Phys.Weight;
     }
 }
 
