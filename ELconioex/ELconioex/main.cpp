@@ -237,6 +237,10 @@ void SetDefaultData()
 	player[2].score_y = 193;
 	player[3].score_x = 377;
 	player[3].score_y = 193;
+
+	player[0].stone_start_pos_x = 3;
+	player[0].stone_start_pos_y = 3;
+
 	for (int i = 0; i < 4; i++)
 	{
 		player[i].score = 0;
@@ -595,118 +599,7 @@ void LoadTitle()
 		strcat(press_cover, "\033[1B");
 	}
 
-	/*stoneのデータを読み取る*/
-	{
-		char picaddr2[30] = ".\\pic\\EL\\Stone";
 
-		if ((fp = fopen(picaddr2, "r")) == NULL)
-		{
-			exit(1);
-		}
-		for (int i = 0; i < STONE_HEIGHT; i++)
-		{
-			for (int j = 0; j < STONE_WIDTH; j++)
-			{
-				fscanf(fp, "%d", &stone_data[i][j]);
-			}
-			fscanf(fp, "\n");
-		}
-		fclose(fp);
-	}
-	/*stoneのデータを画像データに変換する*/
-	old_num = -1;
-	for (int i = 0; i < STONE_HEIGHT; i++)
-	{
-		strcat(press_pic, "\033[s");
-		for (int j = 0; j < STONE_WIDTH; j++)
-		{
-			new_num = stone_data[i][j];
-
-			if (new_num != 255255255)
-			{
-				if (old_num == new_num)
-				{
-					strcat(stone_pic, " ");
-				}
-				else
-				{
-					int rgb[9];
-					strcat(stone_pic, "\033[48;2;");
-					for (int count = 0; count < 9; count++)
-					{
-						int ten = 1;
-						for (int kk = 0; kk < count; kk++)
-						{
-							ten *= 10;
-						}
-						rgb[count] = (new_num / (100000000 / ten)) % 10;
-						itoa(rgb[count], c, 10);
-						strcat(stone_pic, c);
-						if (count == 2 || count == 5)
-						{
-							strcat(stone_pic, ";");
-						}
-						else if (count == 8)
-						{
-							strcat(stone_pic, "m");
-						}
-					}
-					strcat(stone_pic, " ");
-				}
-			}
-			else
-			{
-				strcat(stone_pic, "\033[1C");
-			}
-			old_num = new_num;
-		}
-		strcat(stone_pic, "\033[u");
-		strcat(stone_pic, "\033[1B");
-	}
-
-	/*stoneのcoverを画像データに変換する*/
-	old_num = -1;
-	for (int i = 0; i < STONE_HEIGHT; i++)
-	{
-		strcat(stone_cover, "\033[s");
-		for (int j = 0; j < STONE_WIDTH; j++)
-		{
-			new_num = 255255255;
-
-			if (old_num == new_num)
-			{
-				strcat(stone_cover, " ");
-			}
-			else
-			{
-				int rgb[9];
-				strcat(stone_cover, "\033[48;2;");
-				for (int count = 0; count < 9; count++)
-				{
-					int ten = 1;
-					for (int kk = 0; kk < count; kk++)
-					{
-						ten *= 10;
-					}
-					rgb[count] = (new_num / (100000000 / ten)) % 10;
-					itoa(rgb[count], c, 10);
-					strcat(stone_cover, c);
-					if (count == 2 || count == 5)
-					{
-						strcat(stone_cover, ";");
-					}
-					else if (count == 8)
-					{
-						strcat(stone_cover, "m");
-					}
-				}
-				strcat(stone_cover, " ");
-			}
-			old_num = new_num;
-		}
-		strcat(stone_cover, "\033[u");
-		strcat(stone_cover, "\033[1B");
-	}
 }
 /*ゲーム用のデータをロードする*/
 void LoadGame()
@@ -860,6 +753,119 @@ void LoadGame()
 			strcat(letter_pic[k], "\033[u");
 			strcat(letter_pic[k], "\033[1B");
 		}
+	}
+
+	/*stoneのデータを読み取る*/
+	{
+		char picaddr2[30] = ".\\pic\\EL\\Stone";
+
+		if ((fp = fopen(picaddr2, "r")) == NULL)
+		{
+			exit(1);
+		}
+		for (int i = 0; i < STONE_HEIGHT; i++)
+		{
+			for (int j = 0; j < STONE_WIDTH; j++)
+			{
+				fscanf(fp, "%d", &stone_data[i][j]);
+			}
+			fscanf(fp, "\n");
+		}
+		fclose(fp);
+	}
+	/*stoneのデータを画像データに変換する*/
+	old_num = -1;
+	for (int i = 0; i < STONE_HEIGHT; i++)
+	{
+		strcat(press_pic, "\033[s");
+		for (int j = 0; j < STONE_WIDTH; j++)
+		{
+			new_num = stone_data[i][j];
+
+			if (new_num != 255255255)
+			{
+				if (old_num == new_num)
+				{
+					strcat(stone_pic, " ");
+				}
+				else
+				{
+					int rgb[9];
+					strcat(stone_pic, "\033[48;2;");
+					for (int count = 0; count < 9; count++)
+					{
+						int ten = 1;
+						for (int kk = 0; kk < count; kk++)
+						{
+							ten *= 10;
+						}
+						rgb[count] = (new_num / (100000000 / ten)) % 10;
+						itoa(rgb[count], c, 10);
+						strcat(stone_pic, c);
+						if (count == 2 || count == 5)
+						{
+							strcat(stone_pic, ";");
+						}
+						else if (count == 8)
+						{
+							strcat(stone_pic, "m");
+						}
+					}
+					strcat(stone_pic, " ");
+				}
+			}
+			else
+			{
+				strcat(stone_pic, "\033[1C");
+			}
+			old_num = new_num;
+		}
+		strcat(stone_pic, "\033[u");
+		strcat(stone_pic, "\033[1B");
+	}
+
+	/*stoneのcoverを画像データに変換する*/
+	old_num = -1;
+	for (int i = 0; i < STONE_HEIGHT; i++)
+	{
+		strcat(stone_cover, "\033[s");
+		for (int j = 0; j < STONE_WIDTH; j++)
+		{
+			new_num = 255255255;
+
+			if (old_num == new_num)
+			{
+				strcat(stone_cover, " ");
+			}
+			else
+			{
+				int rgb[9];
+				strcat(stone_cover, "\033[48;2;");
+				for (int count = 0; count < 9; count++)
+				{
+					int ten = 1;
+					for (int kk = 0; kk < count; kk++)
+					{
+						ten *= 10;
+					}
+					rgb[count] = (new_num / (100000000 / ten)) % 10;
+					itoa(rgb[count], c, 10);
+					strcat(stone_cover, c);
+					if (count == 2 || count == 5)
+					{
+						strcat(stone_cover, ";");
+					}
+					else if (count == 8)
+					{
+						strcat(stone_cover, "m");
+					}
+				}
+				strcat(stone_cover, " ");
+			}
+			old_num = new_num;
+		}
+		strcat(stone_cover, "\033[u");
+		strcat(stone_cover, "\033[1B");
 	}
 
 
