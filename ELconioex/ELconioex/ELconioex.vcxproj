@@ -140,10 +140,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="conioex.h" />
+    <ClInclude Include="Physics.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="rotation.h" />
+    <ClInclude Include="vec4.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="rotation_def.cpp" />
+    <ClCompile Include="vec4_def.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
